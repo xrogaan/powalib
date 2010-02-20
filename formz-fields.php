@@ -360,6 +360,10 @@ class FormField {
 
 // on est dans une classe de base donc là c'est vraiment la base
 
+	/**
+	 * Retourne la véritable 'valeur' a passer au formulaire.
+	 * Le retour est différent selon la classe.
+	 */
 	function VSubmit( $value )
 	{
 		return $value;
