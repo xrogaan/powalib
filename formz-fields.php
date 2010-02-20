@@ -533,7 +533,7 @@ class FormFieldHidden extends FormField
  * @class FormFieldDomain
  */
 class FormFieldDomain extends FormField {
-	protected $domain;
+	public $domain;
 	
 	function __construct( $key, $required, $validator, $name, $value, $help, $domain ) {
 		parent::__construct( $key, $required, $validator, $name, $value, $help );
