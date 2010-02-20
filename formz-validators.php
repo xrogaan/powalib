@@ -566,13 +566,17 @@ class FormValidatorUpload implements iFormValidator
 	function __construct( array $params ) {
 		$this->iexist = true;
 		foreach( $params as $k=>$v ) {
-			if ($k == 'content_types' && !empty($v['regex'])) {
-				$this->funcCheck = 'multi_preg_match';
-				$v = $v['regex'];
-			} else {
-				$this->funcCheck = 'mutli_strpos';
-				$v = $v['strpos'];
-			}
+			if ($k == 'content_types') {
+			    if (!empty($v['regex'])) {
+				    $this->funcCheck = 'multi_preg_match';
+				    $v = $v['regex'];
+				} elseif (!empty($v['strpos'])) {
+			    	$this->funcCheck = 'mutli_strpos';
+			    	$v = $v['strpos'];
+    			} else {
+			        throw new Exception('Unknow types.');
+	    		}
+	    	}
 			$this->$k = $v;
 		}
 	}
