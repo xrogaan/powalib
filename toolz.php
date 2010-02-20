@@ -98,3 +98,56 @@ function make_table( $stuff, $cols )
 	return $table;
 }
 
+function prettyq( $q )
+{
+	return preg_replace( "/(^| )([A-Z]{2,})( |$)/", " <strong>$2</strong> ", $q );
+}
+
+// quote une valeur pour la base de données de manière intelligente
+function db_quote( $val )
+{
+    switch( $type = gettype( $val ))
+    {
+        case 'boolean':
+        case 'integer':
+            return intval( $val );
+            break;
+
+        case 'double':
+            return floatval( $val );
+            break;
+
+        case 'NULL':
+            return  'NULL';
+            break;
+
+        case 'array':
+            return implode( ', ', array_map( 'intval', $val ));
+            break;
+
+        default:
+            return "'".$val."'";
+            break;
+    }
+}
+
+function db_quote_query( )
+{
+    $args = func_get_args();
+    $sql = array_shift($args);
+
+    // pas de paramètres : renvoyer la requête telle quelle
+    if (count( $args ) < 1) {
+        return $sql;
+    }
+
+    // quote params
+    foreach($args[0] as $v) {
+        $params[] = db_quote($v);
+    }
+
+    return vsprintf( $sql, $params );
+}
+
+
+
