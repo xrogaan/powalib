@@ -104,12 +104,36 @@ function pf_compare_jma( $ad, $bd )
 */
 function multi_ereg_match( $eregs, $text )
 {
+	trigger_error('This function use deprecated methods', E_USER_NOTICE);
+	
 	if( !is_array( $eregs ))
 		return ereg( $eregs, $text );
 	else foreach( $eregs as $e )
 		if( ereg( $e, $text ))
 			return true;
 	return false;
+}
+
+function multi_strpos($haystacks, $text) {
+	if (!is_array($haystacks)) {
+		return (strpos($haystacks, $text) !== false) ? true : false;
+	} else {
+		foreach ($haystacks as $haystack)
+			if (strpos($haystack, $text) !== false)
+				return true;
+		return false;
+	}
+}
+
+function multi_preg_match ($regexs, $text) {
+	if (!is_array($regexs)) {
+		return preg_match($regexs, $text);
+	} else {
+		foreach ($regexs as $regex)
+			if (preg_match($regex, $text))
+				return true;
+		return false;
+	}
 }
 
 /**
@@ -521,6 +545,7 @@ class FormValidatorUpload implements iFormValidator
 	 * tableau clé=>valeur permettant de valider des images
 	 *
 	 * si il est présent, on vérifie que le fichier est une image.
+	 * Doit être remplis par __construct
 	 * <pre>
 	 *	Clé                      Valeur
 	 *	---------------------    --------------------------------------------------------
@@ -535,11 +560,19 @@ class FormValidatorUpload implements iFormValidator
 	 */
 	public $image;
 	
-	private $iexist;
+	private $iexist; //undetermined action.
+	private $funcCheck;
 	
 	function __construct( array $params ) {
 		$this->iexist = true;
 		foreach( $params as $k=>$v ) {
+			if ($k == 'content_types' && !empty($v['regex'])) {
+				$this->funcCheck = 'multi_preg_match';
+				$v = $v['regex'];
+			} else {
+				$this->funcCheck = 'mutli_strpos';
+				$v = $v['strpos'];
+			}
 			$this->$k = $v;
 		}
 	}
@@ -561,13 +594,13 @@ class FormValidatorUpload implements iFormValidator
 		}
 
 		// Type
-		if( !is_null( $this->content_types ) && !multi_ereg_match( $this->content_types, $value['type'] )) {
+		if( !is_null( $this->content_types ) && !call_user_func_array($this->funcCheck, array( $this->content_types, $value['type'] ))) {
 			$error[] = "Seuls les types de fichiers suivants sont autorisés : ".(is_array($this->content_types)?implode(',',$this->content_types):$this->content_types) . ". Vous avez donné : " . $value['type'];
 			return null;
 		}
 
 		// Nom de fichier
-		if( !is_null( $this->filename ))
+		if (!is_null($this->filename))
 		{
 			if( is_object( $this->filename ))	// si c'est un validateur ...
 			{
@@ -593,7 +626,7 @@ class FormValidatorUpload implements iFormValidator
 
 			// Revalide le content-type
 			$ctypes = $p['content_types'] ? $p['content_types'] : $this->content_types;
-			if( !is_null( $ctypes ) && !multi_ereg_match( $ctypes, $img['mime'] )) {
+			if (!is_null( $ctypes ) && !call_user_func_array($this->funcCheck, array( $ctypes, $img['mime'] ))) {
 				$error[] = "Seuls les types d'images suivants sont autorisés : " . (is_array($ctypes) ? implode(',',$ctypes) : $ctypes);
 				return null;
 			}
