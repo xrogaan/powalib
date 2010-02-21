@@ -1,0 +1,3 @@
+- Send demo into the repository
+- Internal vars in Fields and Validator objects shouldn't be public (i.e. read-write mode) but
+  protected and avaiable though ''get`` methods, like : $form->fieldName->getDomain();
