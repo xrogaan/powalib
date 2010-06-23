@@ -1,0 +1,226 @@
+*	{	font-family: sans-serif; }
+
+textarea
+{
+	font-size: 11px;
+}
+
+body
+{
+	font-size: 10px;
+}
+
+ul.pagetopmenu li
+{
+	display:	inline;
+	padding:	5px 10px 5px 10px;
+	margin:		3px 2px 0px 2px;
+	background: #E0E0E0;
+	border:		1px solid  #E0E0E0;
+}
+
+ul.pagetopmenu li.active
+{
+	margin:		0px 2px 0px 2px;
+	padding:	5px 10px 5px 10px;
+	background: #D0D0D0;
+	border:		1px solid black;
+}
+
+ul.pagetopmenu li.active, ul.pagetopmenu li:hover
+{
+	border:		1px solid black;
+}
+
+div.mbox
+{
+	border: 1px solid  #E0E0E0;
+}
+
+div.mbox div.mboxtitle
+{
+	background-color:	 #E0E0E0;
+	padding:			3px;
+}
+
+div.mbox div.mboxcontents
+{
+	padding:			3px;
+}
+
+div.redirect_message_box
+{
+	border: 2px solid silver;
+	margin: 0px 0px 0px 0px;
+	padding: 8px 8px 8px 8px;
+	position: fixed;
+	right: 30px;
+	top: 30px;
+	overflow: hidden;
+	background: white;
+}
+
+div.redirect_message
+{
+	background: white;
+	font-weight: bold;
+}
+
+.formerror
+{
+	color: red;
+}
+
+div.bigerror
+{
+	border:		10px solid red;
+	padding:	10px 10px 10px 10px;
+	font-size:	14px;
+}
+
+.error
+{
+	border:			1px solid red;
+	padding:		3px 3px 3px 3px;
+	font-weight:	bold;
+}
+
+table.listing
+{
+	font-size: 10px;
+}
+table.listing th
+{
+	background-color:  #E0E0E0;
+}
+table.listing tr.even td
+{
+	background-color: #F0F0F0;
+}
+table.listing tr.odd td
+{
+	background-color: #F8F8F8;
+}
+
+h1
+{
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+div.flipVisibility div.mboxtitle
+{
+	cursor:pointer;cursor:hand;
+}
+.clickable
+{
+	cursor:pointer;cursor:hand;
+}
+
+div.flipVisibility div.mboxcontents
+{
+	display:	none;
+}
+
+div.form_checkboxes table
+{
+	border: 1px solid black;
+}
+
+div.button
+{
+	border:			1px solid silver;
+	background:		#FFF0E0;
+	padding:		2px 5px 2px 5px;
+	margin:			3px 3px 3px 3px;
+	line-height:	20px;
+	width:			50;
+	display:		inline;
+	cursor:pointer;cursor:hand;
+}
+div.button:hover
+{
+	background:		#FFE080;
+}
+
+div.ovf40
+{
+	height: 	40px;
+	width:		250px;
+	overflow:	hidden;
+}
+div.ovf40:hover
+{
+	overflow:	visible;
+}
+
+div.ovf40 div
+{
+	width:		250px;
+}
+
+div.ovf40:hover div
+{
+	position:	absolute;
+	border:		1px solid black;
+	border-top:	5px solid black;
+	background:	white;
+	padding:	6px;
+}
+
+div.ovfLinks
+{
+	height: 	40px;
+	width:		80px;
+	overflow:	hidden;
+}
+div.ovfLinks:hover
+{
+	overflow:	visible;
+}
+
+div.ovfLinks div
+{
+	width:		80px;
+}
+
+div.ovfLinks:hover div
+{
+	position:	absolute;
+	border:		1px solid black;
+	border-top:	5px solid black;
+	background:	white;
+	padding:	6px;
+}
+
+div.powasearch div.results
+{
+	position:		absolute;
+}
+
+div.powasearch div.results div.mbox
+{
+	border: 1px solid  black;
+}
+
+div.powasearch div.mboxcontents
+{
+	background:		white;
+	width:			200px;
+	display:		block;
+}
+
+div.menupowasearch
+{
+	float: right;
+}
+
+div.menupowasearch div.results
+{
+	left : 10px;
+}
+
+
+
+
+
