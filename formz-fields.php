@@ -557,7 +557,7 @@ class FormFieldDomain extends FormField {
 		$value = $this->GetValueForForm();
 		if( $value === '' ) $value = null;
 		$options = is_array($this->display_mode) ? $this->display_mode['options'] : '';
-		$f = '<select name="' . $key . '" $options><option value="">' . ucfirst(l10n('choose')) . "...</option>\n";
+		$f = '<select name="' . $key . '" '.$options.'><option value="">' . ucfirst(l10n('choose')) . "...</option>\n";
 		foreach ($this->domain as $key=>$name) {
 			$s = ($value === strval( $key )) ? ' selected' : '';
 			$f.= "	<option value=\"$key\"$s>$name</option>\n";
