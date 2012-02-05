@@ -532,7 +532,10 @@ EOF;
 */
 //		var_dump( $r );
 
-		if( $this->_form_present->form_value != 1 ) return false;
+        if ($this->_form_present->form_value != 1) {
+            return false;
+        }
+
 		$this->_is_validated = $r;
 		return $r;
 	}
