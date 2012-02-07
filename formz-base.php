@@ -479,7 +479,7 @@ EOF;
                         'input'     =>  $this->$k->FormInput(),
                         'help'      =>  $this->$k->FormHelp(),
                         'error'     =>  $this->$k->FormError(),
-                        'form_key'  =>  $this->$k->form_key;
+                        'form_key'  =>  $this->$k->form_key
                     );
                 }
                 else
